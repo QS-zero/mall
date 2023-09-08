@@ -1,7 +1,6 @@
 package com.exercise.mall.dao;
 
 import com.exercise.mall.MallApplicationTests;
-import com.exercise.mall.pojo.Category;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
