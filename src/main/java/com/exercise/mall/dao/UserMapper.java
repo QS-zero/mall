@@ -1,7 +1,9 @@
 package com.exercise.mall.dao;
 
 import com.exercise.mall.pojo.User;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface UserMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +16,9 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+
+    int countByUsername(String username);
+
+    int countByEmail(String email);
+
 }
