@@ -1,6 +1,7 @@
 package com.exercise.mall.service;
 
 import com.exercise.mall.pojo.User;
+import com.exercise.mall.vo.ResponseVo;
 import org.springframework.stereotype.Service;
 
 
@@ -9,7 +10,7 @@ public interface IUserService {
      * 注册
      */
 
-    void register(User user);
+    ResponseVo register(User user);
 
 
 
