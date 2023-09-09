@@ -26,7 +26,7 @@ public class UserController {
     private IUserService userService;
 
     @PostMapping("/register")
-    public ResponseVo register(@Valid @RequestBody UserForm userForm,
+    public ResponseVo<User> register(@Valid @RequestBody UserForm userForm,
                                BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             log.error("注册提交参数有误, {} {}",
@@ -41,5 +41,10 @@ public class UserController {
         BeanUtils.copyProperties(userForm, user);
         //dto
         return userService.register(user);
+    }
+
+    @PostMapping("/login")
+    public ResponseVo<User> login(){
+        return null;
     }
 }
