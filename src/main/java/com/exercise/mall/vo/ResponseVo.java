@@ -1,11 +1,8 @@
 package com.exercise.mall.vo;
 
 import com.exercise.mall.enums.ResponseEnum;
-import com.exercise.mall.pojo.User;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
-import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 
 import java.util.Objects;
