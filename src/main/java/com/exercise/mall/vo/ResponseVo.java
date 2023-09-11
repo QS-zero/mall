@@ -1,6 +1,7 @@
 package com.exercise.mall.vo;
 
 import com.exercise.mall.enums.ResponseEnum;
+import com.exercise.mall.pojo.User;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
@@ -24,12 +25,22 @@ public class ResponseVo<T> {
         this.msg = msg;
     }
 
-    public static <T> ResponseVo<T> success(String msg){
-        return new ResponseVo<>(ResponseEnum.SUCCESS.getCode(), msg);
+    public ResponseVo(Integer status, T data) {
+        this.status = status;
+        this.data = data;
     }
 
     public static <T> ResponseVo<T> success(){
         return new ResponseVo<>(ResponseEnum.SUCCESS.getCode(), ResponseEnum.SUCCESS.getDesc());
+    }
+
+    public static <T> ResponseVo<T> successByMsg(String msg){
+        return new ResponseVo<>(ResponseEnum.SUCCESS.getCode(), msg);
+    }
+
+    public static <T> ResponseVo<T> success(T data){
+        return new ResponseVo<>(ResponseEnum.SUCCESS.getCode(), data);
+
     }
 
     public static <T> ResponseVo<T> error(ResponseEnum responseEnum){
@@ -45,4 +56,6 @@ public class ResponseVo<T> {
                 bindingResult.getFieldError().getDefaultMessage();
         return new ResponseVo<>(responseEnum.getCode(), msg);
     }
+
+
 }

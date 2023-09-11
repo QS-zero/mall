@@ -14,5 +14,6 @@ public class MallApplicationTest {
 
     @Test
     public void main() {
+
     }
 }

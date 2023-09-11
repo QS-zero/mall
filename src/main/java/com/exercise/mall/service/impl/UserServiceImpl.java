@@ -73,8 +73,8 @@ public class UserServiceImpl implements IUserService {
             //密码错误(返回用户名或密码错误)
             return ResponseVo.error(ResponseEnum.USERNAME_OR_PASSWORD_ERROR);
         }
-
-        return ResponseVo.success();
+        user.setPassword("这能给你看？？？");
+        return ResponseVo.success(user);
     }
 
 

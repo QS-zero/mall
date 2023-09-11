@@ -6,7 +6,7 @@ import lombok.Data;
 import javax.validation.constraints.NotBlank;
 
 @Data
-public class UserForm {
+public class UserLoginForm {
 
     //@NotBlank 用于String 判断空格
     //@NotNull 判断是否是NULL
@@ -18,6 +18,4 @@ public class UserForm {
     @NotBlank
     private String password;
 
-    @NotBlank
-    private String email;
 }
