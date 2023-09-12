@@ -18,6 +18,10 @@ import java.util.stream.Collectors;
 
 @Service
 public class CategoryServiceImpl implements ICategoryService {
+    /**
+     * 耗时：http请求 > 磁盘 > 内存
+     *      mysql(内网+磁盘)
+     */
 
     @Autowired
     private CategoryMapper categoryMapper;
