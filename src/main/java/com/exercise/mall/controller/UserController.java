@@ -30,15 +30,8 @@ public class UserController {
     private IUserService userService;
 
     @PostMapping("/register")
-    public ResponseVo<User> register(@Valid @RequestBody UserRegisterForm userRegisterForm,
-                               BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            log.error("注册提交参数有误, {} {}",
-                    Objects.requireNonNull(bindingResult.getFieldError()).getField(),
-                    bindingResult.getFieldError().getDefaultMessage());
+    public ResponseVo<User> register(@Valid @RequestBody UserRegisterForm userRegisterForm) {
 
-            return ResponseVo.error(ResponseEnum.PARAM_ERROR, bindingResult);
-        }
 
         User user = new User();
         //SpringBoot 拷贝对象
@@ -49,11 +42,8 @@ public class UserController {
 
     @PostMapping("/login")
     public ResponseVo<User> login(@Valid @RequestBody UserLoginForm userLoginForm,
-                                  BindingResult bindingResult,
                                   HttpSession session){
-        if (bindingResult.hasErrors()) {
-            return ResponseVo.error(ResponseEnum.PARAM_ERROR, bindingResult);
-        }
+
 
         ResponseVo<User> userResponseVo = userService.login(userLoginForm.getUsername(), userLoginForm.getUsername());
         // 设置Session
