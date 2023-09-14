@@ -4,6 +4,9 @@ spring:
     username: root
     password: Y012138rt
     url: jdbc:mysql://127.0.0.1:3306/mall?characterEncoding=utf-8&useSSL=false
+  redis:
+    host: 127.0.0.1
+    port: 6379
 
 mybatis:
   configuration:
@@ -19,3 +22,4 @@ server:
   servlet:
     session:
       timeout: 120
+
