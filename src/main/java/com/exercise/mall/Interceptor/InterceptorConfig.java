@@ -13,6 +13,6 @@ public class InterceptorConfig implements WebMvcConfigurer {
         registry.addInterceptor(new UserLoginInterceptor())
                 .addPathPatterns("/**")
                 .excludePathPatterns("/user/login", "/user/register", "/categories",
-                        "/products", "/products/{productId}", "/carts", "/error");
+                        "/products", "/products/{productId}", "/error");
     }
 }
