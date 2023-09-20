@@ -26,7 +26,7 @@ public class ShippingServiceImpl implements IShippingService {
     public ResponseVo<Map<String, Integer>> add(Integer uid, ShoppingForm form) {
         Shipping shipping = new Shipping();
         BeanUtils.copyProperties(form, shipping);
-        shipping.setId(uid);
+        shipping.setUserId(uid);
         int row = shippingMapper.insertSelective(shipping);
 
         if (row == 0){
@@ -42,7 +42,11 @@ public class ShippingServiceImpl implements IShippingService {
 
     @Override
     public ResponseVo delete(Integer uid, Integer shippingId) {
-        return null;
+        int row = shippingMapper.deleteByIdKeyAndUid(uid, shippingId);
+        if (row == 0) {
+            return ResponseVo.error(ResponseEnum.DELETE_SHIPPING_FAIL);
+        }
+        return ResponseVo.success();
     }
 
     @Override

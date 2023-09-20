@@ -43,6 +43,12 @@ public class IShippingServiceTest extends MallApplicationTest {
 
     @Test
     public void delete() {
+
+        Integer shippingId = 6;
+        ResponseVo responseVo = shippingService.delete(uid, shippingId);
+        log.info("result:{}", responseVo);
+        Assert.assertEquals(ResponseEnum.SUCCESS.getCode(), responseVo.getStatus());
+
     }
 
     @Test

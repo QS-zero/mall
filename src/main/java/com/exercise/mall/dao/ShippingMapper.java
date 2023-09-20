@@ -1,6 +1,7 @@
 package com.exercise.mall.dao;
 
 import com.exercise.mall.pojo.Shipping;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -18,4 +19,7 @@ public interface ShippingMapper {
     int updateByPrimaryKeySelective(Shipping record);
 
     int updateByPrimaryKey(Shipping record);
+
+    int deleteByIdKeyAndUid(@Param("uid") Integer uid,
+                            @Param("shippingId") Integer shippingId);
 }
