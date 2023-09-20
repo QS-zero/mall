@@ -2,8 +2,7 @@ package com.exercise.mall.service;
 
 import com.exercise.mall.MallApplicationTest;
 import com.exercise.mall.enums.ResponseEnum;
-import com.exercise.mall.form.ShoppingForm;
-import com.exercise.mall.pojo.Shipping;
+import com.exercise.mall.form.ShippingForm;
 import com.exercise.mall.vo.ResponseVo;
 import com.github.pagehelper.PageInfo;
 import lombok.extern.slf4j.Slf4j;
@@ -14,8 +13,6 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Map;
-
-import static org.junit.Assert.*;
 
 
 @Slf4j
@@ -28,7 +25,7 @@ public class IShippingServiceTest extends MallApplicationTest {
 
     private Integer shippingId;
 
-    private ShoppingForm form;
+    private ShippingForm form;
 
     private Integer pageNum = 1;
 
@@ -36,7 +33,7 @@ public class IShippingServiceTest extends MallApplicationTest {
 
     @Before
     public void before() {
-        ShoppingForm form = new ShoppingForm();
+        ShippingForm form = new ShippingForm();
         form.setReceiverName("QS");
         form.setReceiverPhone("121");
         form.setReceiverMobile("1122021");
