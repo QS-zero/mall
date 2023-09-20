@@ -51,11 +51,21 @@ public class ShippingServiceImpl implements IShippingService {
 
     @Override
     public ResponseVo update(Integer uid, Integer shippingId, ShoppingForm form) {
-        return null;
+        Shipping shipping = new Shipping();
+        BeanUtils.copyProperties(form, shipping);
+        shipping.setUserId(uid);
+        shipping.setId(shippingId);
+        int row = shippingMapper.updateByPrimaryKeySelective(shipping);
+        if (row == 0){
+            ResponseVo.error(ResponseEnum.ERROR);
+        }
+
+        return ResponseVo.success();
     }
 
     @Override
     public ResponseVo<PageInfo> list(Integer uid, Integer pageNum, Integer pageSize) {
+
         return null;
     }
 }

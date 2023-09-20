@@ -23,6 +23,8 @@ public class IShippingServiceTest extends MallApplicationTest {
 
     private Integer uid = 1;
 
+    private Integer shippingId;
+
     @Test
     public void add() {
         ShoppingForm form = new ShoppingForm();
@@ -36,7 +38,9 @@ public class IShippingServiceTest extends MallApplicationTest {
         form.setReceiverZip("100000");
 
         ResponseVo<Map<String, Integer>> add = shippingService.add(uid, form);
+        shippingId = add.getData().get("shippingId");
         log.info("result:{}", add);
+        log.info("shippingId:{}", shippingId);
         Assert.assertEquals(ResponseEnum.SUCCESS.getCode(), add.getStatus());
 
     }
@@ -44,8 +48,7 @@ public class IShippingServiceTest extends MallApplicationTest {
     @Test
     public void delete() {
 
-        Integer shippingId = 6;
-        ResponseVo responseVo = shippingService.delete(uid, shippingId);
+        ResponseVo responseVo = shippingService.delete(uid, 8);
         log.info("result:{}", responseVo);
         Assert.assertEquals(ResponseEnum.SUCCESS.getCode(), responseVo.getStatus());
 
@@ -53,9 +56,15 @@ public class IShippingServiceTest extends MallApplicationTest {
 
     @Test
     public void update() {
+        ShoppingForm form = new ShoppingForm();
+        form.setReceiverName("吾儿菲菲");
+        ResponseVo responseVo = shippingService.update(uid, 7, form);
+        log.info("upDateResult:{}", responseVo);
+        Assert.assertEquals(ResponseEnum.SUCCESS.getCode(), responseVo.getStatus());
     }
 
     @Test
     public void list() {
+
     }
 }
