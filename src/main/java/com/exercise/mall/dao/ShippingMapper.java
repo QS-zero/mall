@@ -5,6 +5,8 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
+
 
 @Repository
 public interface ShippingMapper {
@@ -22,4 +24,7 @@ public interface ShippingMapper {
 
     int deleteByIdKeyAndUid(@Param("uid") Integer uid,
                             @Param("shippingId") Integer shippingId);
+
+    List<Shipping> selectByUid(Integer uid);
+
 }

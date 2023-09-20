@@ -5,8 +5,11 @@ import com.exercise.mall.enums.ResponseEnum;
 import com.exercise.mall.form.ShoppingForm;
 import com.exercise.mall.pojo.Shipping;
 import com.exercise.mall.vo.ResponseVo;
+import com.github.pagehelper.PageInfo;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -25,8 +28,14 @@ public class IShippingServiceTest extends MallApplicationTest {
 
     private Integer shippingId;
 
-    @Test
-    public void add() {
+    private ShoppingForm form;
+
+    private Integer pageNum = 1;
+
+    private Integer pageSize = 10;
+
+    @Before
+    public void before() {
         ShoppingForm form = new ShoppingForm();
         form.setReceiverName("QS");
         form.setReceiverPhone("121");
@@ -36,19 +45,25 @@ public class IShippingServiceTest extends MallApplicationTest {
         form.setReceiverDistrict("临潼区");
         form.setReceiverAddress("斜口街道");
         form.setReceiverZip("100000");
+        this.form = form;
 
-        ResponseVo<Map<String, Integer>> add = shippingService.add(uid, form);
-        shippingId = add.getData().get("shippingId");
-        log.info("result:{}", add);
-        log.info("shippingId:{}", shippingId);
-        Assert.assertEquals(ResponseEnum.SUCCESS.getCode(), add.getStatus());
+        add();
+    }
+
+
+
+    public void add() {
+        ResponseVo<Map<String, Integer>> responseVo = shippingService.add(uid, form);
+        this.shippingId = responseVo.getData().get("shippingId");
+        log.info("result:{}", responseVo);
+        Assert.assertEquals(ResponseEnum.SUCCESS.getCode(), responseVo.getStatus());
 
     }
 
-    @Test
+    @After
     public void delete() {
-
-        ResponseVo responseVo = shippingService.delete(uid, 8);
+//        form.get
+        ResponseVo responseVo = shippingService.delete(uid, shippingId);
         log.info("result:{}", responseVo);
         Assert.assertEquals(ResponseEnum.SUCCESS.getCode(), responseVo.getStatus());
 
@@ -56,15 +71,17 @@ public class IShippingServiceTest extends MallApplicationTest {
 
     @Test
     public void update() {
-        ShoppingForm form = new ShoppingForm();
         form.setReceiverName("吾儿菲菲");
-        ResponseVo responseVo = shippingService.update(uid, 7, form);
-        log.info("upDateResult:{}", responseVo);
+        ResponseVo responseVo = shippingService.update(uid, shippingId, form);
+        log.info("updateResult:{}", responseVo);
         Assert.assertEquals(ResponseEnum.SUCCESS.getCode(), responseVo.getStatus());
     }
 
     @Test
     public void list() {
 
+        ResponseVo<PageInfo> responseVo = shippingService.list(uid, pageNum, pageSize);
+        log.info("listResult:{}", responseVo);
+        Assert.assertEquals(ResponseEnum.SUCCESS.getCode(), responseVo.getStatus());
     }
 }
