@@ -186,7 +186,7 @@ public class OrderServiceImpl implements IOrderService {
     public ResponseVo cancel(Integer uid, Long orderNo) {
         Order order = orderMapper.selectByOrderNo(orderNo);
         if (order == null || !order.getUserId().equals(uid)) {
-            return ResponseVo.error(ResponseEnum.ERROR);
+            return ResponseVo.error(ResponseEnum.ORDER_NOT_EXIST);
         }
 
         //只有[未付款]订单可以取消
@@ -203,6 +203,28 @@ public class OrderServiceImpl implements IOrderService {
         }
 
         return ResponseVo.success();
+    }
+
+    @Override
+    public void paid(Long orderNo) {
+        Order order = orderMapper.selectByOrderNo(orderNo);
+        if (order == null ) {
+            //应该报警
+            throw new RuntimeException(ResponseEnum.ORDER_NOT_EXIST.getDesc() + "订单ID:" + orderNo);
+        }
+
+        //只有[未付款]订单可以变成已付款
+        if (!order.getStatus().equals(OrderStatusEnum.NO_PAY.getCode())){
+            throw new RuntimeException(ResponseEnum.ORDER_STATUS_ERROR.getDesc() + "订单ID:" + orderNo);
+        }
+
+        order.setStatus(OrderStatusEnum.PAID.getCode());
+        order.setPaymentTime(new Date());
+
+        int row = orderMapper.updateByPrimaryKeySelective(order);
+        if (row <= 0) {
+            throw new RuntimeException("将订单更新未已支付状态失败. 订单ID:" + orderNo);
+        }
     }
 
     private OrderVo buildOrderVo(Order order, List<OrderItem> orderItemList, Shipping shipping) {
