@@ -33,7 +33,8 @@ public class ICartServiceTest extends MallApplicationTest {
 
     private Integer uid = 1;
 
-    @Before
+//    @Before
+    @Test
     public void add(){
         log.info("【新增购物车】");
         CartAddForm form = new CartAddForm();
@@ -69,7 +70,7 @@ public class ICartServiceTest extends MallApplicationTest {
 
     }
 
-    @After
+//    @After
     public void delete(){
         log.info("【删除购物车】");
         ResponseVo<CartVo> list = cartService.delete(uid, productAddId);

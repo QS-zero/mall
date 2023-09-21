@@ -188,16 +188,19 @@
     </if>
   </select>
 
-  <select id="selectByProductId" resultMap="BaseResultMap">
+
+  <select id="selectByProductIdSet" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from mall_product
-    where status = 1
-    <if test="categoryIdSet.size() > 0">
-      and category_id in
-      <foreach collection="cartEntrySet" item="item" index="index" open="(" separator="," close=")">
-        #{item}
-      </foreach>
-    </if>
+    <where>
+      <if test="productIdSet.size() > 0">
+        and id in
+        <foreach collection="productIdSet" item="item" index="index" open="(" separator="," close=")">
+          #{item}
+        </foreach>
+      </if>
+    </where>
+
   </select>
 </mapper>

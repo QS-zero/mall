@@ -3,8 +3,11 @@ package com.exercise.mall.service;
 
 import com.exercise.mall.form.CartAddForm;
 import com.exercise.mall.form.CartUpdateForm;
+import com.exercise.mall.pojo.Cart;
 import com.exercise.mall.vo.CartVo;
 import com.exercise.mall.vo.ResponseVo;
+
+import java.util.List;
 
 public interface ICartService {
 
@@ -21,4 +24,6 @@ public interface ICartService {
     ResponseVo<CartVo> unSelectAll(Integer uid);
 
     ResponseVo<Integer> sum(Integer uid);
+
+    List<Cart> listForCart(Integer uid);
 }

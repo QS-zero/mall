@@ -1,7 +1,11 @@
 package com.exercise.mall.dao;
 
 import com.exercise.mall.pojo.Order;
+import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
+@Repository
 public interface OrderMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +18,8 @@ public interface OrderMapper {
     int updateByPrimaryKeySelective(Order record);
 
     int updateByPrimaryKey(Order record);
+
+    List<Order> selectByUid(Integer uid);
+
+    Order selectByOrderNo(Long orderNo);
 }

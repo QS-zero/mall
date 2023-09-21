@@ -103,12 +103,7 @@ public class CartServerImpl implements ICartService {
         CartVo cartVo = new CartVo();
         List<CartProductVo> cartProductVoList = new ArrayList<>();
 
-//        Set<Map.Entry<String, String>> cartEntrySet = entries.entrySet();
-//
-//        List<Product> products = productMapper.selectByProductId(cartEntrySet);
-//        for (Product product : products) {
-//
-//        }
+
 
         for (Map.Entry<String, String> entry : entries.entrySet()) {
             Integer productId = Integer.valueOf(entry.getKey());
@@ -236,7 +231,7 @@ public class CartServerImpl implements ICartService {
         return ResponseVo.success(reduce);
     }
 
-    private List<Cart> listForCart(Integer uid) {
+    public List<Cart> listForCart(Integer uid) {
         //创建redis的hash结构
         HashOperations<String, String, String> opsForHash = redisTemplate.opsForHash();
         //获取redis的key
